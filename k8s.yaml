@@ -10,7 +10,8 @@ metadata:
     app: casdoor
 spec:
   #EDIT IT: if you don't want to run casdoor in default namespace, please modify this filed
-  type: NodePort
+  # type: NodePort
+  type: ClusterIP
   ports:
     - port: 8000
   selector:

@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    jenkins/kube-default: true
+    app: jenkins
+    component: agent
+spec:
+  containers:
+  - name: docker
+    image: docker:1.11
+    command: ['cat']
+    tty: true
+    volumeMounts:
+    - name: dockersock
+      mountPath: /var/run/docker.sock
+  - name: jnlp
+    image: registry.digitalocean.com/halocom/halocom-io/jenkins-agent:1.0.1
+    imagePullSecrets:
+    - name: halocom
+    resources:
+      limits:
+        cpu: 200m
+        memory: 512Mi
+      requests:
+        cpu: 100m
+        memory: 256Mi
+  imagePullPolicy: Always
+  volumes:
+  - name: dockersock
+    hostPath:
+      path: /var/run/docker.sock

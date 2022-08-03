@@ -23,4 +23,3 @@ COPY --from=BACK /go/src/casdoor/server ./server
 COPY --from=BACK /go/src/casdoor/swagger ./swagger
 COPY --from=BACK /go/src/casdoor/conf/app.conf ./conf/app.conf
 COPY --from=FRONT /web/build ./web/build
-ENTRYPOINT ["/server"]
