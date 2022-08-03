@@ -43,4 +43,5 @@ require (
 	gopkg.in/yaml.v2 v2.3.0 // indirect
 	xorm.io/core v0.7.2
 	xorm.io/xorm v1.0.4
+	github.com/lib/pq v1.10.4
 )
