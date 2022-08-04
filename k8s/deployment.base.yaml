@@ -35,21 +35,21 @@ spec:
         app: {{SERVICE}}
     spec:
       containers:
-      - name: {{SERVICE}}
-        image: {{IMAGE_TAG}}
-        ports:
-        - containerPort: 8000
-        volumeMounts:
-          - name: config-volume
-            mountPath: /conf
-        command: ["/server"]
-    volumes:
-     - name: config-volume
-       projected:
-         defaultMode: 420
-         sources:
-         - configMap:
-             items:
-             - key: app.conf
-               path: app.conf
-             name: casdoor-config
+        - name: {{SERVICE}}
+          image: {{IMAGE_TAG}}
+          ports:
+          - containerPort: 8000
+          volumeMounts:
+            - name: config-volume
+              mountPath: /conf
+          command: ["/server"]
+      volumes:
+       - name: config-volume
+         projected:
+           defaultMode: 420
+           sources:
+           - configMap:
+               items:
+               - key: app.conf
+                 path: app.conf
+               name: casdoor-config
