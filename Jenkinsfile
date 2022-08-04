@@ -1,4 +1,4 @@
-pipeine {
+pipeline {
   agent {
     kubernetes {
         yamlFile "./k8s/build.yaml"
