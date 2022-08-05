@@ -39,6 +39,9 @@ spec:
           image: {{IMAGE_TAG}}
           ports:
           - containerPort: 8000
+          envFrom:
+          - configMapRef:
+              name: {{SERVICE}}-conf
           volumeMounts:
             - name: config-volume
               mountPath: /conf
