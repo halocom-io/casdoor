@@ -42,17 +42,17 @@ spec:
           envFrom:
           - configMapRef:
               name: {{SERVICE}}-conf
-          volumeMounts:
-            - name: config-volume
-              mountPath: /conf
+          # volumeMounts:
+          #   - name: config-volume
+          #     mountPath: /conf
           command: ["/server"]
-      volumes:
-       - name: config-volume
-         projected:
-           defaultMode: 420
-           sources:
-           - configMap:
-               items:
-               - key: app.conf
-                 path: app.conf
-               name: casdoor-config
+      # volumes:
+      #  - name: config-volume
+      #    projected:
+      #      defaultMode: 420
+      #      sources:
+      #      - configMap:
+      #          items:
+      #          - key: app.conf
+      #            path: app.conf
+      #          name: {{SERVICE}}-config
