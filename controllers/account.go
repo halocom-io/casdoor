@@ -279,7 +279,7 @@ func (c *ApiController) GetAccount() {
 		c.ResponseError(fmt.Sprintf("The user: %s doesn't exist", userId))
 		return
 	}
-	userRes=UserRes{user}
+	userRes := UserRes(user)
 
 	organization := object.GetMaskedOrganization(object.GetOrganizationByUser(user))
 	resp := Response{
