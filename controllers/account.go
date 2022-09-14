@@ -281,19 +281,19 @@ func (c *ApiController) GetAccount() {
 	}
 
 	userRes := UserRes{
-		Owner: 			user.Owner,
-		Name: 			user.Name,
-		CreatedTime:	user.CreatedTime,
-		UpdatedTime:	user.UpdatedTime,
-		Id:				user.Id,
-		Type            user.Type,
-		DisplayName     user.DisplayName,
-		FirstName       user.FirstName,
-		LastName        user.LastName,
-		Avatar          user.Avatar,
-		PermanentAvatar user.PermanentAvatar,
-		Email           user.Email,
-		Phone           user.Phone,
+		Owner:				user.Owner,
+		Name:				user.Name,
+		CreatedTime:		user.CreatedTime,
+		UpdatedTime:		user.UpdatedTime,
+		Id:					user.Id,
+		Type:				user.Type,
+		DisplayName:		user.DisplayName,
+		FirstName:			user.FirstName,
+		LastName:			user.LastName,
+		Avatar:				user.Avatar,
+		PermanentAvatar:	user.PermanentAvatar,
+		Email:				user.Email,
+		Phone:				user.Phone,
 	}
 
 	organization := object.GetMaskedOrganization(object.GetOrganizationByUser(user))
