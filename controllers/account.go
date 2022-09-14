@@ -89,20 +89,20 @@ type Captcha struct {
 }
 // Custom Struct
 type UserRes struct {
-	Owner       string `xorm:"varchar(100) notnull pk" json:"owner"`
-	Name        string `xorm:"varchar(100) notnull pk" json:"name"`
-	CreatedTime string `xorm:"varchar(100)" json:"createdTime"`
-	UpdatedTime string `xorm:"varchar(100)" json:"updatedTime"`
+	Owner       string 
+	Name        string 
+	CreatedTime string 
+	UpdatedTime string 
 
-	Id                string   `xorm:"varchar(100) index" json:"id"`
-	Type              string   `xorm:"varchar(100)" json:"type"`
-	DisplayName       string   `xorm:"varchar(100)" json:"displayName"`
-	FirstName         string   `xorm:"varchar(100)" json:"firstName"`
-	LastName          string   `xorm:"varchar(100)" json:"lastName"`
-	Avatar            string   `xorm:"varchar(500)" json:"avatar"`
-	PermanentAvatar   string   `xorm:"varchar(500)" json:"permanentAvatar"`
-	Email             string   `xorm:"varchar(100) index" json:"email"`
-	Phone             string   `xorm:"varchar(100) index" json:"phone"`
+	Id                string   
+	Type              string   
+	DisplayName       string   
+	FirstName         string   
+	LastName          string   
+	Avatar            string   
+	PermanentAvatar   string   
+	Email             string   
+	Phone             string   
 }
 
 // Signup
@@ -279,7 +279,22 @@ func (c *ApiController) GetAccount() {
 		c.ResponseError(fmt.Sprintf("The user: %s doesn't exist", userId))
 		return
 	}
-	userRes := UserRes(user)
+
+	userRes := UserRes{
+		Owner: 			user.Owner,
+		Name: 			user.Name,
+		CreatedTime:	user.CreatedTime,
+		UpdatedTime:	user.UpdatedTime,
+		Id:				user.Id,
+		Type            user.Type,
+		DisplayName     user.DisplayName,
+		FirstName       user.FirstName,
+		LastName        user.LastName,
+		Avatar          user.Avatar,
+		PermanentAvatar user.PermanentAvatar,
+		Email           user.Email,
+		Phone           user.Phone,
+	}
 
 	organization := object.GetMaskedOrganization(object.GetOrganizationByUser(user))
 	resp := Response{
