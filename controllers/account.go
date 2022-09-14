@@ -87,6 +87,23 @@ type Captcha struct {
 	ClientSecret2 string `json:"clientSecret2"`
 	SubType       string `json:"subType"`
 }
+// Custom Struct
+type UserRes struct {
+	Owner       string `xorm:"varchar(100) notnull pk" json:"owner"`
+	Name        string `xorm:"varchar(100) notnull pk" json:"name"`
+	CreatedTime string `xorm:"varchar(100)" json:"createdTime"`
+	UpdatedTime string `xorm:"varchar(100)" json:"updatedTime"`
+
+	Id                string   `xorm:"varchar(100) index" json:"id"`
+	Type              string   `xorm:"varchar(100)" json:"type"`
+	DisplayName       string   `xorm:"varchar(100)" json:"displayName"`
+	FirstName         string   `xorm:"varchar(100)" json:"firstName"`
+	LastName          string   `xorm:"varchar(100)" json:"lastName"`
+	Avatar            string   `xorm:"varchar(500)" json:"avatar"`
+	PermanentAvatar   string   `xorm:"varchar(500)" json:"permanentAvatar"`
+	Email             string   `xorm:"varchar(100) index" json:"email"`
+	Phone             string   `xorm:"varchar(100) index" json:"phone"`
+}
 
 // Signup
 // @Tag Login API
@@ -251,6 +268,7 @@ func (c *ApiController) Logout() {
 // @Success 200 {object} controllers.Response The Response object
 // @router /get-account [get]
 func (c *ApiController) GetAccount() {
+
 	userId, ok := c.RequireSignedIn()
 	if !ok {
 		return
@@ -261,13 +279,14 @@ func (c *ApiController) GetAccount() {
 		c.ResponseError(fmt.Sprintf("The user: %s doesn't exist", userId))
 		return
 	}
+	userRes=UserRes{user}
 
 	organization := object.GetMaskedOrganization(object.GetOrganizationByUser(user))
 	resp := Response{
 		Status: "ok",
 		Sub:    user.Id,
 		Name:   user.Name,
-		Data:   user,
+		Data:   userRes,
 		Data2:  organization,
 	}
 	c.Data["json"] = resp
