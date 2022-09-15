@@ -261,6 +261,7 @@ func (c *ApiController) GetAccount() {
 		c.ResponseError(fmt.Sprintf("The user: %s doesn't exist", userId))
 		return
 	}
+	user.Password = ""
 
 	organization := object.GetMaskedOrganization(object.GetOrganizationByUser(user))
 	resp := Response{
