@@ -251,6 +251,7 @@ func (c *ApiController) Logout() {
 // @Success 200 {object} controllers.Response The Response object
 // @router /get-account [get]
 func (c *ApiController) GetAccount() {
+
 	userId, ok := c.RequireSignedIn()
 	if !ok {
 		return
@@ -268,7 +269,7 @@ func (c *ApiController) GetAccount() {
 		Status: "ok",
 		Sub:    user.Id,
 		Name:   user.Name,
-		Data:   user,
+		Data:   userRes,
 		Data2:  organization,
 	}
 	c.Data["json"] = resp
