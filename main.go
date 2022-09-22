@@ -20,7 +20,7 @@ import (
 
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/logs"
-	_ "github.com/astaxie/beego/session/redis"
+	"github.com/astaxie/beego/session/redis"
 	"github.com/casdoor/casdoor/authz"
 	"github.com/casdoor/casdoor/conf"
 	"github.com/casdoor/casdoor/object"
