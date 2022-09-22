@@ -269,7 +269,7 @@ func (c *ApiController) GetAccount() {
 		Status: "ok",
 		Sub:    user.Id,
 		Name:   user.Name,
-		Data:   userRes,
+		Data:   user,
 		Data2:  organization,
 	}
 	c.Data["json"] = resp
